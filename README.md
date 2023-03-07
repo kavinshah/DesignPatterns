@@ -1,10 +1,10 @@
 # DesignPatterns
 
-Creational Patterns
+# Creational Patterns
 1. 
 
-Behavioral Patterns
+# Behavioral Patterns
 1. 
 
-Structural Patterns
+# Structural Patterns
 1. 
