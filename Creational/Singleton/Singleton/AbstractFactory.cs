@@ -100,8 +100,8 @@ namespace AbstractFactory
 
     public class DinosaurNoiseProducer : IDinosaurNoiseProducer
     {
-        private static IDinosaurNoiseProducer instance;
-        private static object lock_obj = new object();
+        private static Lazy<IDinosaurNoiseProducer> instance;
+        
         private DinosaurNoiseProducer()
         {
         }
@@ -110,17 +110,8 @@ namespace AbstractFactory
         {
             // using a basic lock to implement singleton.
             // This degrades performance significantly.
-            if (instance == null)
-            {
-                lock (lock_obj)
-                {
-                    if (instance == null)
-                    {
-                        instance = new DinosaurNoiseProducer();
-                    }
-                }
-            }
-            return instance;
+            instance = new Lazy<IDinosaurNoiseProducer>(new DinosaurNoiseProducer());
+            return instance.Value;
         }
 
         void IDinosaurNoiseProducer.MakeADinosaurNoise(IDinosaurFactory dinosaurFactory)
