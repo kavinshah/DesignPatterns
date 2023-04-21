@@ -110,14 +110,16 @@ namespace AbstractFactory
         {
             // using a basic lock to implement singleton.
             // This degrades performance significantly.
-            lock (lock_obj)
+            if (instance == null)
+            {
+                lock (lock_obj)
                 {
                     if (instance == null)
                     {
                         instance = new DinosaurNoiseProducer();
                     }
                 }
-            
+            }
             return instance;
         }
 
