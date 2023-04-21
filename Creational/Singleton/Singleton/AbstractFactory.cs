@@ -100,17 +100,15 @@ namespace AbstractFactory
 
     public class DinosaurNoiseProducer : IDinosaurNoiseProducer
     {
-        private static Lazy<IDinosaurNoiseProducer> instance;
+        private static Lazy<IDinosaurNoiseProducer> instance= new Lazy<IDinosaurNoiseProducer>(new DinosaurNoiseProducer());
         
         private DinosaurNoiseProducer()
         {
+            counter++;
         }
 
         public static IDinosaurNoiseProducer GetInstance()
         {
-            // using a basic lock to implement singleton.
-            // This degrades performance significantly.
-            instance = new Lazy<IDinosaurNoiseProducer>(new DinosaurNoiseProducer());
             return instance.Value;
         }
 
