@@ -104,7 +104,6 @@ namespace AbstractFactory
         
         private DinosaurNoiseProducer()
         {
-            counter++;
         }
 
         public static IDinosaurNoiseProducer GetInstance()
