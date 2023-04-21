@@ -108,6 +108,8 @@ namespace AbstractFactory
 
         public static IDinosaurNoiseProducer GetInstance()
         {
+            // using a basic lock to implement singleton.
+            // This degrades performance significantly.
             lock (lock_obj)
                 {
                     if (instance == null)
