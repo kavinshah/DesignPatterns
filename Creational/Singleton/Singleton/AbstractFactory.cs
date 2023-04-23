@@ -102,7 +102,7 @@ namespace AbstractFactory
     {
         private static Lazy<IDinosaurNoiseProducer> instance= new Lazy<IDinosaurNoiseProducer>(new DinosaurNoiseProducer());
         
-        private DinosaurNoiseProducer()
+        protected DinosaurNoiseProducer()
         {
         }
 
@@ -115,6 +115,20 @@ namespace AbstractFactory
         {
             IDinosaur dinosaur = dinosaurFactory.CreateADinosaur();
             dinosaur.MakeANoise();
+        }
+    }
+
+    public class NewDinosaurNoiseProducer : DinosaurNoiseProducer
+    {
+        private static Lazy<DinosaurNoiseProducer> instance = new Lazy<DinosaurNoiseProducer>(new NewDinosaurNoiseProducer());
+
+        protected NewDinosaurNoiseProducer()
+        { }
+
+        public static new DinosaurNoiseProducer GetInstance()
+        {
+            Console.WriteLine(DinosaurNoiseProducer.GetInstance().GetType().ToString());
+            return instance.Value;
         }
     }
 }
