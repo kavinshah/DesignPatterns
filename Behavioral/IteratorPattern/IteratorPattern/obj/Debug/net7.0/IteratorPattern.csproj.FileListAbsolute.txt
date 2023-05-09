@@ -1,0 +1,5 @@
+C:\Users\kavin\OneDrive\Desktop\KAVIN\DesignPatterns\Behavioral\IteratorPattern\IteratorPattern\obj\Debug\net7.0\IteratorPattern.csproj.AssemblyReference.cache
+C:\Users\kavin\OneDrive\Desktop\KAVIN\DesignPatterns\Behavioral\IteratorPattern\IteratorPattern\obj\Debug\net7.0\IteratorPattern.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kavin\OneDrive\Desktop\KAVIN\DesignPatterns\Behavioral\IteratorPattern\IteratorPattern\obj\Debug\net7.0\IteratorPattern.AssemblyInfoInputs.cache
+C:\Users\kavin\OneDrive\Desktop\KAVIN\DesignPatterns\Behavioral\IteratorPattern\IteratorPattern\obj\Debug\net7.0\IteratorPattern.AssemblyInfo.cs
+C:\Users\kavin\OneDrive\Desktop\KAVIN\DesignPatterns\Behavioral\IteratorPattern\IteratorPattern\obj\Debug\net7.0\IteratorPattern.csproj.CoreCompileInputs.cache
