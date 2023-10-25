@@ -117,3 +117,61 @@ namespace AbstractFactory
         }
     }
 }
+
+public class GlobalCounter
+{
+    private static int counter;
+
+    public GlobalCounter()
+    {
+        counter++;
+    }
+
+    public void GetCounter()
+    {
+        Console.WriteLine(counter);
+    }
+}
+
+public abstract class Singleton<T> : GlobalCounter where T : class, new()
+{
+    private static T _instance;
+
+    public static T GetInstance()
+    {
+        if (_instance == null)
+            _instance = new T();
+        return _instance;
+    }
+}
+
+public class SingletonA : Singleton<SingletonA>
+{
+    private static SingletonA instance;
+
+    public SingletonA() { }
+
+    public SingletonA Getnstance()
+    {
+        if (instance == null)
+        {
+            instance = new SingletonA();
+        }
+        return instance;
+    }
+}
+
+public class SingletonB : Singleton<SingletonB>
+{
+    private static SingletonB instance;
+    public SingletonB() { }
+
+    public SingletonB Getnstance()
+    {
+        if (instance == null)
+        {
+            instance = new SingletonB();
+        }
+        return instance;
+    }
+}
