@@ -4,31 +4,25 @@ using System.Linq;
 using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace AbstractFactory
 {
-
     public enum DinosaurType
     {
         TRex,
         Stegosaurus
     }
-
     public interface IDinosaur
     {
         public void MakeANoise();
     }
-
     public interface IDinosaurFactory
     {
         public IDinosaur CreateADinosaur();
     }
-
     public interface IDinosaurNoiseProducer
     {
         public void MakeADinosaurNoise(IDinosaurFactory dinosaurFactory);
     }
-
     public class TRex : IDinosaur
     {
         public void MakeANoise()
@@ -36,7 +30,6 @@ namespace AbstractFactory
             Console.WriteLine("Making TRex Noise!!");
         }
     }
-
     public class Stegosaurus : IDinosaur
     {
         public void MakeANoise()
@@ -44,19 +37,16 @@ namespace AbstractFactory
             Console.WriteLine("Making Stegosaurus Noise!!");
         }
     }
-
     public class DinosaurFactory : IDinosaurFactory
     {
         private readonly DinosaurType dinosaurType;
-
         public DinosaurFactory(string dinosaurName)
         {
             Enum.TryParse(dinosaurName, true, out this.dinosaurType);
         }
-
         public IDinosaur CreateADinosaur()
         {
-            IDinosaur dinosaur=null;
+            IDinosaur dinosaur = null;
             switch (dinosaurType)
             {
                 case DinosaurType.TRex:
@@ -72,7 +62,6 @@ namespace AbstractFactory
             return dinosaur;
         }
     }
-
     public class RandomDinosaurFactory : IDinosaurFactory
     {
         private Random random;
@@ -81,11 +70,9 @@ namespace AbstractFactory
         {
             this.random = random;
         }
-
         public IDinosaur CreateADinosaur()
         {
             int randomNumber = random.Next(0, 10);
-
             if (randomNumber < 5)
             {
                 dinosaur = new TRex();
@@ -97,38 +84,30 @@ namespace AbstractFactory
             return dinosaur;
         }
     }
-
     public class DinosaurNoiseProducer : IDinosaurNoiseProducer
     {
-        private static Lazy<IDinosaurNoiseProducer> instance= new Lazy<IDinosaurNoiseProducer>(new DinosaurNoiseProducer());
-        
-        protected DinosaurNoiseProducer()
+        private static IDinosaurNoiseProducer instance;
+        private static object lock_obj = new object();
+        private DinosaurNoiseProducer()
         {
         }
 
         public static IDinosaurNoiseProducer GetInstance()
         {
-            return instance.Value;
+            // using a basic lock to implement singleton.
+            // This degrades performance significantly.
+            lock (lock_obj)
+            {
+                instance = new DinosaurNoiseProducer();
+            }
+
+            return instance;
         }
 
         void IDinosaurNoiseProducer.MakeADinosaurNoise(IDinosaurFactory dinosaurFactory)
         {
             IDinosaur dinosaur = dinosaurFactory.CreateADinosaur();
             dinosaur.MakeANoise();
-        }
-    }
-
-    public class NewDinosaurNoiseProducer : DinosaurNoiseProducer
-    {
-        private static Lazy<DinosaurNoiseProducer> instance = new Lazy<DinosaurNoiseProducer>(new NewDinosaurNoiseProducer());
-
-        protected NewDinosaurNoiseProducer()
-        { }
-
-        public static new DinosaurNoiseProducer GetInstance()
-        {
-            Console.WriteLine(DinosaurNoiseProducer.GetInstance().GetType().ToString());
-            return instance.Value;
         }
     }
 }
