@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Adapter
 {
+    /*
+     * This is a generic class which is used to create children
+     */
     internal static class ChildCreator
     {
         internal static IChild CreateChild(IMammal mammal)
@@ -13,17 +16,20 @@ namespace Adapter
             return mammal.GiveBirth();
         }
     }
-    
-    internal interface IChild
-    {
-        void Cry();
-    }
 
+    //Mammal interface to give birth
     internal interface IMammal
     {
         IChild GiveBirth();
     }
 
+    // Generic Child interface
+    internal interface IChild
+    {
+        void Cry();
+    }
+
+    // a new legacy class with different implementation
     internal class Triceratops
     {
         public TriceratopsEggs LayEggs()
@@ -50,6 +56,10 @@ namespace Adapter
         }
     }
 
+    /* 
+     * Our adapter to wrap methods to give birth
+     * We are using object adapter here.
+    */
     internal class TriceratopsToMammalAdapter : IMammal
     {
         Triceratops triceratops;
