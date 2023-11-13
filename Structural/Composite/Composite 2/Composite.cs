@@ -11,6 +11,9 @@ namespace Composite_2
         void Eat();
     }
 
+    /// <summary>
+    /// The Eat() method belongs to the component inteface IPlant
+    /// </summary>
     internal class Leaf : IPlant
     {
         bool isEaten = false;
@@ -23,6 +26,10 @@ namespace Composite_2
         }
     }
 
+    /// <summary>
+    /// The Eat() method allows us to treat the individual 
+    /// objects (Leaf) in the same way as the composite object Branch
+    /// </summary>
     internal class Branch : IPlant
     {
         IList<IPlant> leaves;
