@@ -66,7 +66,7 @@ namespace Decorator
             LibraryItem item;
             public Decorator(LibraryItem item)
             {
-                this.item  = item;
+                this.item = item;
             }
 
             public override void Display()
@@ -104,6 +104,5 @@ namespace Decorator
                 }
             }
         }
-
     }
 }
