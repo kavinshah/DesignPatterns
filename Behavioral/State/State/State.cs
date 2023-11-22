@@ -50,6 +50,8 @@ namespace State
             CheckLimits();
         }
 
+        public abstract void Initialize();
+
         public abstract void CheckLimits();
     }
 
