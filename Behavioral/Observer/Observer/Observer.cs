@@ -67,6 +67,12 @@ namespace Observer
 
     internal class ConcreteObserverA : IObserver 
     {
+        ISubject subject;
+        ConcreteObserverA(ISubject subject)
+        {
+            this.subject = subject;
+        }
+
         public void Update(ISubject subject)
         {
             if(subject != null && subject.State < 3)
@@ -85,5 +91,34 @@ namespace Observer
                 Console.WriteLine($"State value has change to {subject.State} observerB");
             }
         }
+    }
+
+    public readonly record struct BaggageInfo
+    (
+        int FlightNumber,
+        string From,
+        int Carousel
+    );
+
+    internal class classA : IObservable<BaggageInfo>
+    {
+        private readonly HashSet<IObserver<BaggageInfo>> _observers = new();
+        private readonly HashSet<BaggageInfo> _flights = new();
+        public IDisposable Subscribe(IObserver<BaggageInfo> observer)
+        {
+            return new Unsubscriber<BaggageInfo>(_observers, observer);
+        }
+    }
+
+    internal sealed class Unsubscriber<BaggageInfo> : IDisposable
+    {
+        private readonly ISet<IObserver<BaggageInfo>> _observers;
+        private readonly IObserver<BaggageInfo> _observer;
+
+        internal Unsubscriber(
+            ISet<IObserver<BaggageInfo>> observers,
+            IObserver<BaggageInfo> observer) => (_observers, _observer) = (observers, observer);
+
+        public void Dispose() => _observers.Remove(_observer);
     }
 }
