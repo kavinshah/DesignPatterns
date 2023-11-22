@@ -64,7 +64,7 @@ namespace State
             Initialize();
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
             interest = 0;
             lowerLimit = -500;
@@ -78,6 +78,7 @@ namespace State
                 Account.state = new SilverState(this);
             }
         }
+
     }
 
     internal class SilverState : State
@@ -93,7 +94,7 @@ namespace State
             Initialize();
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
             interest = 0;
             lowerLimit = 500;
@@ -122,7 +123,7 @@ namespace State
             Initialize();
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
             interest = 0.05;
             lowerLimit = 1001;
