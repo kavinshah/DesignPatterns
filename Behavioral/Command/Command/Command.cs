@@ -77,6 +77,4 @@ namespace Command
                 onFinish.Execute();
         }
     }
-
-
 }
