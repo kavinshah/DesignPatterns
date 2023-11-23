@@ -10,4 +10,3 @@ Console.WriteLine(context.Execute(10, 5));
 
 context = new Context(new StrategyMultiply());
 Console.WriteLine(context.Execute(5, 10));
-

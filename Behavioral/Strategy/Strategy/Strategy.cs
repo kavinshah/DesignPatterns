@@ -19,7 +19,7 @@ namespace Strategy
             this.strategy = strategy;
         }
 
-        public int Execute(int a , int b)
+        public int Execute(int a, int b)
         {
             return strategy.PerformOperation(a, b);
         }
