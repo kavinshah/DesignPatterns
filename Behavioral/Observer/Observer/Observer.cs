@@ -67,12 +67,6 @@ namespace Observer
 
     internal class ConcreteObserverA : IObserver 
     {
-        ISubject subject;
-        ConcreteObserverA(ISubject subject)
-        {
-            this.subject = subject;
-        }
-
         public void Update(ISubject subject)
         {
             if(subject != null && subject.State < 3)
