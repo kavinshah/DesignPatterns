@@ -79,7 +79,7 @@ namespace IteratorPattern
         protected List<string> _collection;
 
         public int Count
-            { get { return _collection.Count; } }
+        { get { return _collection.Count; } }
 
         public WordsCollection()
         {
@@ -133,7 +133,7 @@ namespace IteratorPattern
 #endif
                 return false;
             }
-            _position+= 2;
+            _position += 2;
 #if DEBUG
             Console.WriteLine($"_Position:{_position}");
 #endif

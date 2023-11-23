@@ -31,7 +31,7 @@ foreach (var item in collection)
 
 IEnumerable<T> GetValues<T>(params T[] values)
 {
-    foreach(T value in values)
+    foreach (T value in values)
     {
         yield return value;
     }
@@ -42,7 +42,7 @@ var polymorphicCollection = new PolymorphicCollection<string>();
 polymorphicCollection.AddItem("Kavin");
 polymorphicCollection.AddItem("Sharad");
 polymorphicCollection.AddItem("Shah");
-foreach(string item in polymorphicCollection)
+foreach (string item in polymorphicCollection)
 {
     Console.WriteLine(item);
 }
