@@ -15,7 +15,7 @@ namespace Builder
 
         protected override void AddMain()
         {
-            this.meal.maincourse="a huge plate of ferns";
+            this.meal.maincourse = "a huge plate of ferns";
         }
 
         protected override void AddStarter()

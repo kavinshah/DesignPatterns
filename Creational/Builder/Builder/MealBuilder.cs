@@ -10,17 +10,17 @@ namespace Builder
     {
         protected Meal meal;
 
-        public Meal Meal 
+        public Meal Meal
         {
-            get 
-            { 
-                return meal??BuildMeal();
+            get
+            {
+                return meal ?? BuildMeal();
             }
         }
 
         public Meal BuildMeal()
         {
-            meal=new Meal();
+            meal = new Meal();
             AddStarter();
             AddMain();
             AddDessert();
@@ -33,5 +33,5 @@ namespace Builder
         protected abstract void AddDessert();
         protected abstract void AddToppings();
     }
-    
+
 }

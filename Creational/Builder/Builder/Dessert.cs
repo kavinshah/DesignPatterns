@@ -13,7 +13,7 @@ namespace Builder
 
         public string DessertName
         {
-            get{ return name; }
+            get { return name; }
         }
 
         public Dessert(string dessertName)
