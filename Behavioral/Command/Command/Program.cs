@@ -5,4 +5,3 @@ Invoker invoker = new Invoker();
 invoker.OnStart(new SimpleCommand());
 invoker.OnFinish(new ComplexCommand(new Receiver()));
 invoker.Execute();
-
