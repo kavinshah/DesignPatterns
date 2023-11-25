@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace Adapter
 {
+
+    /*
+     * Mammal interface to give birth
+     */
+    internal interface IMammal
+    {
+        IChild GiveBirth();
+    }
+
     /*
      * This is a generic class which is used to create children
      */
@@ -15,12 +24,6 @@ namespace Adapter
         {
             return mammal.GiveBirth();
         }
-    }
-
-    //Mammal interface to give birth
-    internal interface IMammal
-    {
-        IChild GiveBirth();
     }
 
     // Generic Child interface
