@@ -96,11 +96,11 @@ namespace AbstractFactory
         {
             // using a basic lock to implement singleton.
             // This degrades performance significantly.
-            if (lock_obj == null)
+            if (instance == null)
             {
                 lock (lock_obj)
                 {
-                    if (lock_obj == null)
+                    if (instance== null)
                     {
                         instance = new DinosaurNoiseProducer();
                     }
@@ -143,6 +143,12 @@ public abstract class Singleton<T> : GlobalCounter where T : class, new()
             _instance = new T();
         return _instance;
     }
+
+    public static void GetTypeOfInstance()
+    {
+        Console.WriteLine(GetInstance().GetType());
+    }
+
 }
 
 public class SingletonA : Singleton<SingletonA>
@@ -151,7 +157,7 @@ public class SingletonA : Singleton<SingletonA>
 
     public SingletonA() { }
 
-    public SingletonA Getnstance()
+    public new SingletonA GetInstance()
     {
         if (instance == null)
         {
@@ -166,7 +172,7 @@ public class SingletonB : Singleton<SingletonB>
     private static SingletonB instance;
     public SingletonB() { }
 
-    public SingletonB Getnstance()
+    public new SingletonB GetInstance()
     {
         if (instance == null)
         {
