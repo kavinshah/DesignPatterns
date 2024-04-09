@@ -19,6 +19,7 @@ namespace Builder
         public Dessert(string dessertName)
         {
             this.name = dessertName;
+            toppings = new List<string>();
         }
 
         public void AddTopping(string topping)
@@ -30,6 +31,5 @@ namespace Builder
         {
             return String.Join(",", toppings);
         }
-
     }
 }

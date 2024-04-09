@@ -8,7 +8,7 @@ namespace Builder
 {
     internal abstract class MealBuilder
     {
-        protected Meal meal;
+        protected Meal? meal=null;
 
         public Meal Meal
         {
