@@ -14,3 +14,13 @@ Borrowable borrowable = new Borrowable(video);
 borrowable.Borrow("Customer 1");
 borrowable.Borrow("Customer 2");
 borrowable.Display();
+
+Console.WriteLine("--------------------------------------------------");
+
+IGigantosaurus gigantosaurus = new Gigantosaurus();
+Console.WriteLine(gigantosaurus.Roar());
+
+IGigantosaurus loudgigantosaurus = new LoudGigantosaurus(gigantosaurus);
+IGigantosaurus veryloudGigantosaurus = new VeryLoudGigantosaurus(loudgigantosaurus);
+Console.WriteLine(veryloudGigantosaurus.Roar());
+
