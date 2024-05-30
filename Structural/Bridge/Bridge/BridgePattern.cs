@@ -39,9 +39,9 @@ namespace Bridge
         }
     }
 
-    internal class ConcreteAbstraction: Abstraction
+    internal class RefinedAbstraction: Abstraction
     {
-        public ConcreteAbstraction(Implementation implementation)
+        public RefinedAbstraction(Implementation implementation)
         {
             _implementation = implementation;
         }

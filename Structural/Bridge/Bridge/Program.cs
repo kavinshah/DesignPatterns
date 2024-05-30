@@ -13,7 +13,7 @@
     {
         static void Main(string[] args)
         {
-            Abstraction abstraction = new ConcreteAbstraction(new ConcreteImplementation());
+            Abstraction abstraction = new RefinedAbstraction(new ConcreteImplementation());
             abstraction.MethodA();
             abstraction.MethodB();
         }
