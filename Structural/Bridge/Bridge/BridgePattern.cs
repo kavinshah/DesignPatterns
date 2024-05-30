@@ -12,10 +12,12 @@ namespace Bridge
 
     2. The Implementation class acts as a blueprint for its future concrete implementations.
 
-    3. Using the skeleton of type Implementation:- 
+    3. The Abstraction type also encapsulates the Implementation types and initialises it through its constructor.
+
+    4. Using the skeleton of type Implementation:- 
     Abstraction class defines methods 'Method1' and 'Method2' which make internal calls to methods 'Method1' and 'Method2'
     
-    4. The concrete types ConcreteImplementation class will now override blueprint methods 'MethodA' and 'MethodB' of Implementation class
+    5. The concrete types ConcreteImplementation class will now override blueprint methods 'MethodA' and 'MethodB' of Implementation class
 
     This approach lets the Abstraction and Implementation types to evolve independently of each other.
 
