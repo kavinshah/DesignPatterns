@@ -2,7 +2,8 @@
 {
     /*
     
-
+    We assign the concrete implementations of Abstraction and Implementation types and then call the skeleton methods.
+    This decouples the code and lets the types evolve independent of each other.
 
      */
     internal class Program
