@@ -5,12 +5,10 @@
 *.assets
 *.cache
 *.exe
-*.sln
-*.csproj
 *.assets
 *.nuget.cache
-*.obj
-*.bin
+obj/
+bin/
 *.deps
 *.dll
 *.pdb
