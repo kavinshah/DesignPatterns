@@ -56,6 +56,9 @@ namespace AbstractFactory
         public IDinosaur CreateADinosaur()
         {
             IDinosaur dinosaur=null;
+
+            Console.WriteLine("Using Dinosaur Factory");
+
             switch (dinosaurType)
             {
                 case DinosaurType.TRex:
@@ -84,6 +87,8 @@ namespace AbstractFactory
         public IDinosaur CreateADinosaur()
         {
             int randomNumber = random.Next(0, 10);
+
+            Console.WriteLine("Using Random Dinosaur Factory");
 
             if (randomNumber < 5)
             {
