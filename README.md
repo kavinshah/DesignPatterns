@@ -7,7 +7,7 @@
 4. Abstract Factory
 5. Prototype
 
-# Behavioral Patterns
+# Structural Patterns
 1. Adapter
 2. Bridge
 3. Composite
@@ -15,5 +15,5 @@
 5. Facade
 6. Proxy
 
-# Structural Patterns
+# Behavioral Patterns
 1. 
