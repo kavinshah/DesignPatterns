@@ -75,4 +75,22 @@ namespace Adapter
             return triceratops?.LayEggs().HatchEggs();
         }
     }
+
+    /*
+     * Using class adapter
+     * This does not require composition of the adaptee object
+     */
+    internal class TricercertopsToMammalClassAdapter : Triceratops, IMammal
+    {
+        public TricercertopsToMammalClassAdapter()
+        {
+        }
+
+        public IChild GiveBirth()
+        {
+            return LayEggs().HatchEggs();
+        }
+
+    }
+
 }
