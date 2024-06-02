@@ -8,7 +8,7 @@ namespace Composite_2
 {
     internal interface IPlant
     {
-        void Eat();
+        void Eat(string parentName="");
     }
 
     /// <summary>
@@ -19,10 +19,10 @@ namespace Composite_2
         bool isEaten = false;
         public Leaf() { }
 
-        public void Eat()
+        public void Eat(string parentName)
         {
             isEaten = true;
-            Console.WriteLine("A Leaf is eaten");
+            Console.WriteLine("A Leaf is eaten for branch: {0}", parentName);
         }
     }
 
@@ -33,17 +33,20 @@ namespace Composite_2
     internal class Branch : IPlant
     {
         IList<IPlant> leaves;
+        string branchName;
 
-        public Branch(IList<IPlant> leaves)
+        public Branch(IList<IPlant> leaves, string branchName = "")
         {
             this.leaves= leaves;
+            this.branchName = branchName;
         }
 
-        public void Eat()
+        public void Eat(string parentName="")
         {
+            Console.WriteLine("Eating branch: {0}", branchName);
             foreach(IPlant leaf in leaves)
             {
-                leaf.Eat();
+                leaf.Eat(branchName);
             }
         }
     }
@@ -52,13 +55,13 @@ namespace Composite_2
     {
         public void Run()
         {
-            IPlant branch1 = new Branch(new List<IPlant>() { new Leaf(), new Leaf(), new Leaf(), new Leaf() });
+            IPlant branch1 = new Branch(new List<IPlant>() { new Leaf(), new Leaf(), new Leaf(), new Leaf() }, "branch1");
             
-            IPlant branch2_1 = new Branch(new List<IPlant>() { new Leaf(), new Leaf() });
-            IPlant branch2_2 = new Branch(new List<IPlant>() { new Leaf(), new Leaf(), new Leaf() });
-            IPlant branch2 = new Branch(new List<IPlant>() { branch2_1, branch2_2 });
+            IPlant branch2_1 = new Branch(new List<IPlant>() { new Leaf(), new Leaf() }, "branch2_1");
+            IPlant branch2_2 = new Branch(new List<IPlant>() { new Leaf(), new Leaf(), new Leaf() }, "branch2_2");
+            IPlant branch2 = new Branch(new List<IPlant>() { branch2_1, branch2_2 }, "branch2");
             
-            IPlant plant = new Branch(new List<IPlant>() { branch1, branch2 , new Leaf(), new Leaf()});
+            IPlant plant = new Branch(new List<IPlant>() { branch1, branch2 , new Leaf(), new Leaf()}, "plant");
 
             plant.Eat();
         }
