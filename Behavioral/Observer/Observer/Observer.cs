@@ -61,7 +61,6 @@ namespace Observer
             State = Random.Shared.Next(10);
             Thread.Sleep(1000);
             Notify();
-
         }
     }
 
