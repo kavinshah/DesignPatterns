@@ -57,10 +57,14 @@ namespace State
 
     internal class RedState : State
     {
-        public RedState(State state)
+        public RedState(State state) : this(state.Account, state.Balance)
         {
-            this.Account = state.Account;
-            this.Balance = state.Balance;
+        }
+
+        public RedState(Account account, double balance)
+        {
+            this.Account = account;
+            this.Balance = balance;
             Initialize();
         }
 
@@ -68,29 +72,24 @@ namespace State
         {
             interest = 0;
             lowerLimit = -500;
-            upperLimit = 0;
+            upperLimit = 500;
         }
 
         public override void CheckLimits()
         {
             if(Balance > upperLimit)
             {
-                Account.state = new SilverState(this);
+                Account.State = new SilverState(this);
             }
         }
-
     }
 
     internal class SilverState : State
     {
-        public SilverState(State state) : this(state.Account, state.Balance)
+        public SilverState(State state)
         {
-        }
-
-        public SilverState(Account account, double balance)
-        {
-            this.Account = account;
-            this.Balance = balance;
+            this.Account = state.Account;
+            this.Balance = state.Balance;
             Initialize();
         }
 
@@ -105,11 +104,11 @@ namespace State
         {
             if (Account.Balance < lowerLimit)
             {
-                Account.state = new RedState(this);
+                Account.State = new RedState(this);
             }
             else if (this.Balance > upperLimit)
             {
-                Account.state = new GoldenState(this);
+                Account.State = new GoldenState(this);
             }
         }
     }
@@ -126,15 +125,19 @@ namespace State
         public override void Initialize()
         {
             interest = 0.05;
-            lowerLimit = 1001;
-            upperLimit = 50000000;
+            lowerLimit = 500;
+            upperLimit = 1000;
         }
 
         public override void CheckLimits()
         {
-            if (this.Balance < lowerLimit)
+            if(this.Balance < lowerLimit)
             {
-                Account.state = new SilverState(this);
+                Account.State = new RedState(this);
+            }
+            else if (this.Balance>lowerLimit && this.Balance < upperLimit)
+            {
+                Account.State = new SilverState(this);
             }
         }
     }
@@ -142,35 +145,41 @@ namespace State
     internal class Account
     {
         public string name;
-        public State state;
+        private State _state;
+
+        public State State
+        {
+            get { return _state; }
+            set { _state = value; }
+        }
 
         public Account(string name)
         {
             this.name = name;
-            this.state = new SilverState(this, 0);
+            this._state = new RedState(this, 0);
         }
 
         public double Balance
         {
-            get { return state.Balance; }
+            get { return _state.Balance; }
         }
 
         public void Deposit(double amount)
         {
-            state.Deposit(amount);
-            Console.WriteLine($"Deposited: {amount}, Balance:{Balance}. Account Type: {state.GetType().Name}");
+            _state.Deposit(amount);
+            Console.WriteLine($"Deposited: {amount}, Balance:{Balance}. Account Type: {_state.GetType().Name}");
         }
 
         public void Withdraw(double amount)
         {
-            state.Withdraw(amount);
-            Console.WriteLine($"Withdrew: {amount}, Balance:{Balance}. Account Type: {state.GetType().Name}");
+            _state.Withdraw(amount);
+            Console.WriteLine($"Withdrew: {amount}, Balance:{Balance}. Account Type: {_state.GetType().Name}");
         }
 
         public void PayInterest()
         {
-            state.PayInterest();
-            Console.WriteLine($"Interest Paid. Balance:{Balance}. Account Type: {state.GetType().Name}");
+            _state.PayInterest();
+            Console.WriteLine($"Interest Paid. Balance:{Balance}. Account Type: {_state.GetType().Name}");
         }
     }
 }
