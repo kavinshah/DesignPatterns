@@ -8,10 +8,10 @@ namespace Observer
 {
     internal interface IObserver
     {
-        public void Update(ISubject subject);
+        public void Update(IObservable observable);
     }
 
-    internal interface ISubject
+    internal interface IObservable
     {
         int State { get; set; }
         void Attach(IObserver observer);
@@ -21,7 +21,7 @@ namespace Observer
         void Notify();
     }
 
-    internal class Subject : ISubject
+    internal class Observable : IObservable
     {
         int status;
         List<IObserver> listeners;
@@ -32,7 +32,7 @@ namespace Observer
             set { status = value; }
         }
 
-        public Subject()
+        public Observable()
         {
             listeners = new List<IObserver>();
         }
@@ -66,7 +66,7 @@ namespace Observer
 
     internal class ConcreteObserverA : IObserver 
     {
-        public void Update(ISubject subject)
+        public void Update(IObservable subject)
         {
             if(subject != null && subject.State < 3)
             {
@@ -77,7 +77,7 @@ namespace Observer
 
     internal class ConcreteObserverB : IObserver
     {
-        public void Update(ISubject subject)
+        public void Update(IObservable subject)
         {
             if (subject != null && (subject.State == 0 || subject.State > 3))
             {
@@ -85,33 +85,4 @@ namespace Observer
             }
         }
     }
-
-    // public readonly record struct BaggageInfo
-    // (
-        // int FlightNumber,
-        // string From,
-        // int Carousel
-    // );
-
-    // internal class classA : IObservable<BaggageInfo>
-    // {
-        // private readonly HashSet<IObserver<BaggageInfo>> _observers = new();
-        // private readonly HashSet<BaggageInfo> _flights = new();
-        // public IDisposable Subscribe(IObserver<BaggageInfo> observer)
-        // {
-            // return new Unsubscriber<BaggageInfo>(_observers, observer);
-        // }
-    // }
-
-    // internal sealed class Unsubscriber<BaggageInfo> : IDisposable
-    // {
-        // private readonly ISet<IObserver<BaggageInfo>> _observers;
-        // private readonly IObserver<BaggageInfo> _observer;
-
-        // internal Unsubscriber(
-            // ISet<IObserver<BaggageInfo>> observers,
-            // IObserver<BaggageInfo> observer) => (_observers, _observer) = (observers, observer);
-
-        // public void Dispose() => _observers.Remove(_observer);
-    // }
 }
