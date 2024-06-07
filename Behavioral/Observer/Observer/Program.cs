@@ -1,16 +1,16 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Observer;
 
-Subject subject = new Subject();
+Observable observable = new Observable();
 IObserver observer1 = new ConcreteObserverA();
 IObserver observer2 = new ConcreteObserverB();
 
-subject.Attach(observer1);
-subject.Attach(observer2);
+observable.Attach(observer1);
+observable.Attach(observer2);
 
-subject.SomeBusinessLogic();
+observable.SomeBusinessLogic();
 
-subject.Detach(observer2);
+observable.Detach(observer2);
 
-subject.SomeBusinessLogic();
+observable.SomeBusinessLogic();
 
