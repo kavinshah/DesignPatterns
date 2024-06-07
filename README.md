@@ -16,4 +16,8 @@
 6. Proxy
 
 # Behavioral Patterns
-1. 
+1. Command
+2. Iterator
+3. Observer
+4. State
+5. Strategy
