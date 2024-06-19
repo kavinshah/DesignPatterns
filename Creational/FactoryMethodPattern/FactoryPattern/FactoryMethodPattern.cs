@@ -64,6 +64,7 @@ namespace FactoryPattern
         /// This allows any subclass to override it if required.
         /// A subclass can continue to use default implementation
         /// if applicable.
+        /// This method is apparently called the template method from Template Method pattern (Behavioral Patterns)
         /// </summary>
         public virtual void MakeDinosaurNoise()
         {
