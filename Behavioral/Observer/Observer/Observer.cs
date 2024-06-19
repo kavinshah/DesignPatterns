@@ -68,7 +68,7 @@ namespace Observer
     {
         public void Update(IObservable subject)
         {
-            if(subject != null && subject.State < 3)
+            if(subject.State < 3)
             {
                 Console.WriteLine($"State value has change to {subject.State} in observerA");
             }
@@ -79,7 +79,7 @@ namespace Observer
     {
         public void Update(IObservable subject)
         {
-            if (subject != null && (subject.State == 0 || subject.State > 3))
+            if (subject.State == 0 || subject.State > 3)
             {
                 Console.WriteLine($"State value has change to {subject.State} observerB");
             }
