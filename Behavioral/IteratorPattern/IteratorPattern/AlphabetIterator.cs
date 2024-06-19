@@ -79,7 +79,12 @@ namespace IteratorPattern
         protected List<string> _collection;
 
         public int Count
-        { get { return _collection.Count; } }
+        { 
+            get
+            {
+                return _collection.Count;
+            } 
+        }
 
         public WordsCollection()
         {
